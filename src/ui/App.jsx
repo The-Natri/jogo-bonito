@@ -51,7 +51,7 @@ function LiveBackground({ mode }) {
 
 // ---------- Dashboard (post-intro) ----------
 function Dashboard() {
-  const { currentMode, currentLanguage, userLevel, setTextInput, sendMessage } = useAppState();
+  const { currentMode, currentLanguage, userLevel, setUserLevel, setTextInput, sendMessage } = useAppState();
 
   const t = translations[currentLanguage] || translations.en;
 
@@ -109,19 +109,19 @@ function Dashboard() {
             {currentMode === "learn" && (
               <div className="mode-panel__levels" style={{ width: "100%" }}>
                 <button 
-                  onClick={() => handleQuickPrompt("What is the offside rule and how is it triggered?")} 
+                  onClick={() => setUserLevel("beginner")} 
                   className={`level-chip${userLevel === "beginner" ? " active" : ""}`}
                 >
                   Beginner
                 </button>
                 <button 
-                  onClick={() => handleQuickPrompt("Explain the role of a box-to-box midfielder and how they help in transitions.")} 
+                  onClick={() => setUserLevel("intermediate")} 
                   className={`level-chip${userLevel === "intermediate" ? " active" : ""}`}
                 >
                   Intermediate
                 </button>
                 <button 
-                  onClick={() => handleQuickPrompt("Deep dive into Juego de Posición (Positional Play) half-spaces and overload-to-isolate tactics.")} 
+                  onClick={() => setUserLevel("expert")} 
                   className={`level-chip${userLevel === "expert" ? " active" : ""}`}
                 >
                   Expert
