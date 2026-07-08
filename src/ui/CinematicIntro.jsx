@@ -610,14 +610,18 @@ export default function CinematicIntro({ currentLanguage, translations, onComple
       4.0
     );
 
-    // 5.0s: TTS spoken welcome
+    // 5.0s: Spoken welcome via native Web Speech API to guarantee normal speed/no lag
     tl.call(() => {
-      const api = window.qvac || window.electronAPI;
-      if (api && api.speakTTS) {
-        api.speakTTS({
-          text: t.welcomeSpoken,
-          language: currentLanguage
-        });
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(t.welcomeSpoken);
+        utterance.lang = currentLanguage;
+        const voices = window.speechSynthesis.getVoices();
+        const voice = voices.find(v => v.lang.toLowerCase().startsWith(currentLanguage.toLowerCase())) || voices[0];
+        if (voice) utterance.voice = voice;
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
       }
     }, [], 5.0);
 
