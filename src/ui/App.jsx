@@ -154,6 +154,15 @@ function AppWithIntro() {
 
   const t = translations[currentLanguage] || translations.en;
 
+  React.useEffect(() => {
+    if (hasStarted && showIntro) {
+      const timer = setTimeout(() => {
+        setShowIntro(false);
+      }, 15000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasStarted, showIntro]);
+
   if (showIntro) {
     if (!hasStarted) {
       return (
