@@ -633,6 +633,11 @@ export default function CinematicIntro({ currentLanguage, translations, onComple
       5.2
     );
 
+    // 15.0s: Extend timeline length to 15s to let user absorb the experience fully
+    tl.call(() => {
+      console.log("Cinematic intro timeline completed (15s duration).");
+    }, [], 15.0);
+
     return () => {
       tl.kill();
     };
