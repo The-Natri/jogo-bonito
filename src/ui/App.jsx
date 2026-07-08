@@ -149,11 +149,63 @@ function Dashboard() {
 // ---------- Root with intro gate ----------
 function AppWithIntro() {
   const [showIntro, setShowIntro] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
   const { currentLanguage, modelStatus, modelProgress, modelError } = useAppState();
 
   const t = translations[currentLanguage] || translations.en;
 
   if (showIntro) {
+    if (!hasStarted) {
+      return (
+        <div className="intro-fallback" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "1.5rem", color: "white", fontFamily: "'Outfit', sans-serif" }}>
+          {/* animated grid background */}
+          <div className="live-bg" aria-hidden="true">
+            <div className="atmo atmo-grid" style={{ opacity: 0.5 }} />
+            <div className="scanline-sweep" />
+          </div>
+          
+          <div style={{ zIndex: 10, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+            <span style={{ fontSize: "3rem", filter: "drop-shadow(0 0 12px var(--accent-green))" }}>⚽</span>
+            <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", letterSpacing: "0.15em", color: "#fff", textTransform: "uppercase", margin: 0, textShadow: "0 0 20px rgba(0, 255, 137, 0.4)" }}>
+              Jogo Bonito
+            </h1>
+            <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", maxWidth: "320px", lineHeight: "1.5" }}>
+              Experience Premium Offline Football Intelligence
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setHasStarted(true)}
+            className="btn-primary"
+            style={{
+              zIndex: 10,
+              padding: "0.85rem 2rem",
+              fontSize: "1rem",
+              borderRadius: "30px",
+              background: "linear-gradient(135deg, #00ff87, #10b981)",
+              color: "#04342c",
+              border: "none",
+              fontWeight: "bold",
+              cursor: "pointer",
+              boxShadow: "0 8px 24px rgba(16, 185, 129, 0.4)",
+              transition: "transform 0.2s, box-shadow 0.2s"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 12px 30px rgba(16, 185, 129, 0.6)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(16, 185, 129, 0.4)";
+            }}
+          >
+            Start Experience ⚡
+          </button>
+        </div>
+      );
+    }
+
     return (
       <Suspense fallback={<div className="intro-fallback" />}>
         <CinematicIntro
