@@ -76,7 +76,18 @@ function Dashboard() {
 
       <header className="app-header">
         <div className="logo-section">
-          <span className="logo-icon">⚽</span>
+          <img 
+            src="./src/assets/logo.png" 
+            alt="Logo" 
+            style={{ 
+              width: "28px", 
+              height: "28px", 
+              borderRadius: "6px", 
+              marginRight: "0.5rem",
+              objectFit: "cover",
+              border: "1px solid rgba(0,255,137,0.3)"
+            }} 
+          />
           <h1 className="logo-text">Jogo Bonito</h1>
           <span style={{ fontSize: "0.75rem", background: "rgba(0, 255, 137, 0.1)", color: "var(--accent-neon)", padding: "0.15rem 0.4rem", borderRadius: "4px", marginLeft: "0.5rem", fontWeight: "bold" }}>
             {t.labels.engineOffline}
@@ -173,8 +184,19 @@ function AppWithIntro() {
             <div className="scanline-sweep" />
           </div>
           
-          <div style={{ zIndex: 10, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
-            <span style={{ fontSize: "3rem", filter: "drop-shadow(0 0 12px var(--accent-green))" }}>⚽</span>
+          <div style={{ zIndex: 10, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "1.25rem" }}>
+            <img 
+              src="./src/assets/logo.png" 
+              alt="Jogo Bonito" 
+              style={{ 
+                width: "96px", 
+                height: "96px", 
+                borderRadius: "20px", 
+                boxShadow: "0 0 20px rgba(0, 255, 137, 0.4)",
+                objectFit: "cover",
+                border: "1px solid rgba(0,255,137,0.3)"
+              }} 
+            />
             <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", letterSpacing: "0.15em", color: "#fff", textTransform: "uppercase", margin: 0, textShadow: "0 0 20px rgba(0, 255, 137, 0.4)" }}>
               Jogo Bonito
             </h1>
@@ -230,7 +252,19 @@ function AppWithIntro() {
   if (modelStatus === "loading" && !showIntro) {
     return (
       <div className="loader-overlay">
-        <div className="loader-logo">⚽</div>
+        <img 
+          src="./src/assets/logo.png" 
+          alt="Loading..." 
+          className="loader-logo"
+          style={{ 
+            width: "80px", 
+            height: "80px", 
+            borderRadius: "18px", 
+            boxShadow: "0 0 20px rgba(0, 255, 137, 0.4)",
+            objectFit: "cover",
+            border: "1px solid rgba(0,255,137,0.3)"
+          }} 
+        />
         <h1 className="loader-title">Jogo Bonito</h1>
         <p className="loader-desc">
           {t.labels.loading}
